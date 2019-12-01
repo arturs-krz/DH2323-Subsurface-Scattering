@@ -46,10 +46,10 @@
 					//float4x4 MVP = mul(_DepthCamP, mul(_DepthCamV, unity_ObjectToWorld));
 					float4x4 MVP = mul(_DepthCamP, mul(_DepthCamV, unity_ObjectToWorld));
 					v2f o;
-					o.dist = length(mul(MVP, v.vertex).xyz);
+					o.dist = length(mul(MVP, v.vertex).xyz) / 15.0;
 
 					float4 vert = v.vertex;
-					vert.xyz += v.normal * 0.05;
+					vert.xyz += v.normal * 0.2;
 					o.vertex = UnityObjectToClipPos(vert);
 					//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 					//UNITY_TRANSFER_FOG(o,o.vertex);
@@ -58,7 +58,9 @@
 
 				float4 frag(v2f i) : SV_Target
 				{
-					return float4(1.0 - clamp(i.dist / 20.0, 0, 1), 0, 0, 1);
+					//return float4(1.0 - clamp(i.dist / 5.0, 0.0, 1.0), 0, 0, 1);
+					//return float4(i.dist, i.dist / 10.0, i.dist / 100.0, 1);
+					return float4(i.dist, 0, 0, 1);
 				}
 			//}
 			ENDCG

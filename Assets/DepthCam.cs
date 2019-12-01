@@ -15,7 +15,7 @@ public class DepthCam : MonoBehaviour
     {
         depthCam = GetComponent<Camera>();
 
-        targetTexture = new RenderTexture(depthCam.pixelWidth, depthCam.pixelHeight, 24, RenderTextureFormat.ARGB64);
+        targetTexture = new RenderTexture(depthCam.pixelWidth, depthCam.pixelHeight, 24, RenderTextureFormat.ARGBFloat);
         targetTexture.name = "Depth Texture";
         targetTexture.Create();
         depthCam.targetTexture = targetTexture;
